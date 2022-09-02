@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    position: fixed;
+    top: 10%;
+    left: -11.7%;
+
+    display: flex;
+
+    font-family: 'Anek Telugu', sans-serif;
+
+    transition: 0.3s;
+}
+
+.side-menu-container{
+    padding-left: 1.3rem;
+    width: 9rem;
+    padding-bottom: 2rem;
+
+    transition: 0.3s;
+}
+
+.side-menu-title {
+    font-size: x-large;
+}
+
+.side-menu {
+    list-style-type: none;
+    height: 30vh;
+    padding-top: 1rem;
+
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-menu-item{
+    cursor: pointer;
+}
+.side-menu-item:hover{
+    color: blue;
+    padding-left: 10px;
+}
+
+.side-menu-icon {
+    padding: 5px 10px;
+
+    display: block;
+    
+    font-size: large;
+}
+
+.active{
+    left: 0%;
+}
