@@ -23,6 +23,6 @@
     </div>
 
     <div *ngIf="show" class="data-table">
-        <app-data-table [doctorsData]="doctors" [columnsToDisplay]="columnsToDisplay"> </app-data-table>
+        <app-data-table [currentPage]="currentPage" [numberOfPages]="totalPages" [doctorsData]="doctors" [columnsToDisplay]="columnsToDisplay"> </app-data-table>
     </div>
 </div>

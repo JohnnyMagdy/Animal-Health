@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IDoctor } from '../models/Doctor';
+import { IDoctor, IDoctorResult } from '../models/Doctor';
 import { IDoctorDetails } from '../models/DoctorDetails';
 import { ISchedule } from '../models/Schedule';
 
@@ -15,8 +15,8 @@ export class DoctorService {
 
   private doctorId = new BehaviorSubject<string>('');
 
-  public getDoctors(): Observable<IDoctor> {
-    return this.http.get<IDoctor>(this.baseUrl+'DisplayAllDoctors');
+  public getDoctors(page:number): Observable<IDoctorResult> {
+    return this.http.get<IDoctorResult>(this.baseUrl+`DisplayAllDoctors?counter=${page}`);
   }
 
   public getDoctorDetails(id: string): Observable<IDoctorDetails> {
