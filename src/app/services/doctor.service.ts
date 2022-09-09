@@ -23,8 +23,8 @@ export class DoctorService {
     return this.http.get<IDoctorDetails>(this.baseUrl+`DisplayDoctorDetails?Id=${id}`);
   }
 
-  public addDoctor(doctor: IDoctorDetails): Observable<IDoctor> {
-    return this.http.post<IDoctor>('', doctor);
+  public addDoctor(doctor: IDoctorDetails): Observable<boolean> {
+    return this.http.post<boolean>(this.baseUrl+'AddDoctor', doctor);
   }
 
   public setDoctorId(id:string){
@@ -42,5 +42,4 @@ export class DoctorService {
   public getDoctorSchedule(id:string):Observable<ISchedule[]>{
     return this.http.get<ISchedule[]>(this.baseUrl+`DisplayDoctorSchedule?Id=${id}`);
   }
-
 }

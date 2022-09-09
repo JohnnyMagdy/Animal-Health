@@ -18,22 +18,32 @@ export class AddDoctorComponent implements OnInit {
     Gender: ['', [Validators.required]],
     NormalFees: ['', [Validators.required]],
 
-    Biography: ['', [Validators.required]],
+    Bio: ['', [Validators.required]],
 
   })
+
+  error:boolean = false;
+  success:boolean = false;
 
   nrSelect = "default";
 
   constructor(private fb:FormBuilder, private doctorService:DoctorService) { }
 
   ngOnInit(): void {
-    console.log(this.addDoctorForm.invalid);
-    
   }
 
   onSubmitNewDoctor():void {
     console.log(this.addDoctorForm.value);
-    //this.doctorService.addDoctor(this.addDoctorForm.value);
+    this.doctorService.addDoctor(this.addDoctorForm.value).subscribe({
+      next: (data)=>{
+        if (data === false){
+          this.error = true;
+        }else{
+          this.success = true;
+          this.addDoctorForm.reset();
+        }
+      }
+    });
   }
 
 }

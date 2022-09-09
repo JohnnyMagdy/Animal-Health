@@ -1,71 +1,77 @@
 <!-- Doctor Table----------------------------------------------------------------------------------- -->
-<table mat-table matSort *ngIf="doctorsData.length !== 0" [dataSource]="doctorDataSource" class="table">
+<div *ngIf="doctorsData.length !== 0">
+    <table mat-table matSort [dataSource]="doctorDataSource" class="table">
 
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor ID </th>
-        <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="userName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
-        <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
-            style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.userName}}</td>
-        <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
-            style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="phoneNumber">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
-        <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.phoneNumber}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="eye_color">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Eye Color </th>
-        <td mat-cell *matCellDef="let row">{{row.eye_color}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="gender">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
-        <td mat-cell *matCellDef="let row">{{row.gender}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="isActivated">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Activate / De-activate </th>
-        <td mat-cell *matCellDef="let row">
-            <div *ngIf="row.isActivated !== undefined">
-                <label class="switch">
-                    <input type="checkbox" [(ngModel)]="row.isActivated" (change)="ngAfterViewInit(); clicked(row.id);">
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
-    <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row" (click)="setId(myRow.id)"></tr>
-</table>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor ID </th>
+            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.id}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
+                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.userName}}</td>
+            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
+                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="phoneNumber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
+            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.phoneNumber}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="eye_color">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Eye Color </th>
+            <td mat-cell *matCellDef="let row">{{row.eye_color}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+            <td mat-cell *matCellDef="let row">{{row.gender}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="isActivated">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Activate / De-activate </th>
+            <td mat-cell *matCellDef="let row">
+                <div *ngIf="row.isActivated !== undefined">
+                    <label class="switch">
+                        <input type="checkbox" [(ngModel)]="row.isActivated" (change)="ngAfterViewInit(); clicked(row.id);">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
+        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row" (click)="setId(myRow.id)"></tr>
+    </table>
+    <app-paginator [resultsNumber]="doctorsData.length" (customers)="setCustomer($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>
+</div>
 
 <!-- Customer Table------------------------------------------------------------------------------------- -->
-<table mat-table matSort *ngIf="customersData.length !== 0" [dataSource]="customerDataSource" class="table">
+<div *ngIf="customersData.length !== 0">
+    <table mat-table matSort [dataSource]="customerDataSource" class="table">
 
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
+            <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+            <td mat-cell *matCellDef="let row"
+                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
+            <td mat-cell *matCellDef="let row"
+                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
+        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row"></tr>
+    </table>
+    
+    <app-paginator [resultsNumber]="customersData.length" (customers)="setCustomer($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>    
+</div>
 
-    <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
-        <td mat-cell *matCellDef="let row"
-            style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
-        <td mat-cell *matCellDef="let row"
-            style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
-    <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row"></tr>
-</table>
-
-<app-paginator (customers)="setCustomer($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>
 
 <div class="overlay" *ngIf="Details" (click)="hideDetails()"></div>
 <app-doctor-details class="doc-details" *ngIf="Details"></app-doctor-details>

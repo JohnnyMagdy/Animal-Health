@@ -7,6 +7,9 @@
 
     <hr>
 
+    <div *ngIf="error" class="error font-big"> Doctor Already Exists! </div>
+    <div *ngIf="success" class="success font-big"> Doctor Added Successfully! </div>
+
     <div class="form-container">
         <form [formGroup]="addDoctorForm" (ngSubmit)="onSubmitNewDoctor()">
             <table class="form-body">
@@ -38,9 +41,9 @@
                     <td> <label for="Email"> Doctor's Email: </label> </td>
                     <td> <input type="email" formControlName="Email" placeholder="Doctor Email"> </td>
                     <td> <label for="PhoneNumber"> Doctor's Mobile Number: </label> </td>
-                    <td> <input type="number" formControlName="PhoneNumber" placeholder="Doctor Mobile Number"> </td>
+                    <td> <input type="text" formControlName="PhoneNumber" placeholder="Doctor Mobile Number"> </td>
                 </tr>
-                
+
                 <tr>
                     <td></td>
                     <td class="fix-sizing">
@@ -67,9 +70,9 @@
                     <td> <label for="Gender"> Doctor's Gender: </label> </td>
                     <td>
                         <select name="gender" formControlName="Gender">
-                        <option disabled value="default" [selected]="true">Choose a gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                            <option disabled value="default" [selected]="true">Choose a gender</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
                         </select>
                     </td>
                     <td> <label for="NormalFees"> Doctor's Fees: </label> </td>
@@ -93,17 +96,17 @@
                     </td>
                 </tr>
 
-        </table>
-        <table class="max-width">
-            <tr> <label for="Biography"> Doctor's Biography: </label> </tr>
-            <tr> <textarea formControlName="Biography" placeholder="Doctor Biography"> </textarea> </tr>
-            <tr> <span class="error" *ngIf="
-                addDoctorForm.controls['Biography'].hasError('required') &&
-                addDoctorForm.controls['Biography'].touched
+            </table>
+            <table class="max-width">
+                <tr> <label for="Bio"> Doctor's Biography: </label> </tr>
+                <tr> <textarea formControlName="Bio" placeholder="Doctor Biography"> </textarea> </tr>
+                <tr> <span class="error" *ngIf="
+                addDoctorForm.controls['Bio'].hasError('required') &&
+                addDoctorForm.controls['Bio'].touched
             "> Biography is required! </span> </tr>
-        </table>
+            </table>
 
-        <!-- <div>
+            <!-- <div>
             <label for="slotDuration"> Doctor's Slots: </label>
             <input type="text" formControlName="slotDuration" placeholder="Doctor Slot Duration">
             <span class="error" *ngIf="
@@ -112,14 +115,14 @@
             ">Title is required</span>
         </div> -->
 
-        <div class="form-footer">
-            <button [disabled]="addDoctorForm.invalid" class="btn" type="submit">
-                Add Doctor
-            </button>
-            <button class="btn" type="reset">
-                Clear Fields
-            </button>
-        </div>
+            <div class="form-footer">
+                <button [disabled]="addDoctorForm.invalid" class="btn" type="submit">
+                    Add Doctor
+                </button>
+                <button class="btn" type="reset">
+                    Clear Fields
+                </button>
+            </div>
         </form>
     </div>
 </div>

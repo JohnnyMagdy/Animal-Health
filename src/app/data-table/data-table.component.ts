@@ -32,8 +32,6 @@ export class DataTableComponent implements AfterViewInit {
   ngAfterViewInit() {
 
     if (this.doctorsData.length !== 0) {
-      console.log(this.doctorsData);
-      
       this.doctorDataSource = new MatTableDataSource(this.doctorsData);
 
       this.doctorDataSource.sort = this.sort;
@@ -63,7 +61,6 @@ export class DataTableComponent implements AfterViewInit {
 
   setCustomer(customers: ICustomer[]) {
     this.customersData = customers;
-    console.log(this.customersData);
 
     this.customerDataSource = new MatTableDataSource(this.customersData);
 

@@ -14,50 +14,47 @@ export class PaginatorComponent implements OnInit {
 
   @Input() currentPage: number = 0;
   @Input() numberOfPages: number = 0;
+  @Input() resultsNumber: number = 0;
 
   @Output() customers = new EventEmitter<ICustomer[]>();
 
-  constructor(private customerService:CustomerService) { 
+  constructor(private customerService: CustomerService) {
   }
 
   ngOnInit(): void {
   }
 
-  hasPrevious(){
-    if(this.currentPage <= 1 ){
+  hasPrevious() {
+    if (this.currentPage <= 1) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
-  hasNext(){
-    if(this.currentPage === this.numberOfPages){
+  hasNext() {
+    if (this.currentPage === this.numberOfPages) {
       return false;
-    }else{
+    } else {
       return true;
     }
   }
 
-  getPrevious(){
-    if(this.hasPrevious()){
-      console.log('prev');
-      
-      this.currentPage --;
+  getPrevious() {
+    if (this.hasPrevious()) {
+      this.currentPage--;
       this.customerService.getCustomers(this.currentPage).subscribe({
-        next: (data)=>{
+        next: (data) => {
           this.customers.emit(data.content);
         }
       });
     }
   }
-  getNext(){
-    if(this.hasNext()){
-      console.log('next');
-
-      this.currentPage ++;
+  getNext() {
+    if (this.hasNext()) {
+      this.currentPage++;
       this.customerService.getCustomers(this.currentPage).subscribe({
-        next: (data)=>{
+        next: (data) => {
           this.customers.emit(data.content);
         }
       });

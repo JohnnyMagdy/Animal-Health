@@ -93,3 +93,12 @@
 .fix-sizing{
     max-width: 0px;
 }
+
+.font-big{
+    font-size: 150%;
+    margin: 2% 0%;
+}
+
+.success{
+    color: green;
+}
