@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IDoctor } from '../models/Doctor';
-import { IPeople } from '../models/People';
+import { Component, ChangeDetectorRef, Input, OnInit } from '@angular/core';
+import { forkJoin, switchMap } from 'rxjs';
+import { IDoctorDetails } from '../models/DoctorDetails';
+import { DoctorService } from '../services/doctor.service';
 
 @Component({
   selector: 'app-doctor-details',
@@ -8,25 +9,43 @@ import { IPeople } from '../models/People';
   styleUrls: ['./doctor-details.component.css']
 })
 export class DoctorDetailsComponent implements OnInit {
-  // @Input() doctors: IDoctor = 
-  //   {
-  //     id:'dsadwa',
-  //     title: 'doctor',
-  //     fullName: 'John0',
-  //     email: 'j@j0.com',
-  //     mobileNumber: '123',
-  //     biography: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem ',
-  //     gender: 'male',
-  //     fees:12,
-  //     slotDuration:1
-  //   };
-  
-  @Input() people: IPeople = {} as IPeople;
 
-  constructor() { }
+  doctor: IDoctorDetails = {} as IDoctorDetails;
+  loading = true;
+  cashedId = '';
+
+  constructor(private doctorService: DoctorService) { }
 
   ngOnInit(): void {
-    
+    this.getDoctorDetails();
   }
 
+  getDoctorDetails() {
+    return this.doctorService.getDoctotId()
+    .pipe(switchMap(id => {
+      return forkJoin([this.doctorService.getDoctorDetails(id), this.doctorService.getDoctorSchedule(id)])
+    }))
+    .subscribe(
+      (data) => {
+        this.doctor = data[0];
+        this.doctor.schedule = data[1];
+        
+        this.loading = false;
+      }
+    );
+
+    // return this.doctorService.getDoctotId().subscribe({
+    //   next: (doctorId) => {
+    //     if (doctorId && this.cashedId !== doctorId) {
+    //       this.cashedId = doctorId;
+    //       this.doctorService.getDoctorDetails(doctorId).subscribe({
+    //         next: (data) => {
+    //           this.doctor = data;
+    //           this.loading = false;
+    //         }
+    //       })
+    //     }
+    //   }
+    // });
+  }
 }

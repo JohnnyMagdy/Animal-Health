@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { IDoctor } from '../models/Doctor';
-import { IPeople } from '../models/People';
 import { DoctorService } from '../services/doctor.service';
 
 @Component({
@@ -17,16 +16,15 @@ export class DoctorListComponent implements OnInit {
 
   doctors: IDoctor[] = [];
 
-  people:IPeople[] = [];
+  columnsToDisplay = ["id","userName","phoneNumber","isActivated"];
 
-  columnsToDisplay = ["name","birth_year","eye_color","gender"];
-
-  constructor(private doctorService:DoctorService,private cdf: ChangeDetectorRef) { }
+  constructor(private doctorService:DoctorService, private cdf: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.doctorService.getDoctors().subscribe({
       next: (data)=>{
-        this.people = data.results;
+        this.doctors = data as unknown as IDoctor[];
+        
         this.cdf.detectChanges();
         this.show = true;
       }

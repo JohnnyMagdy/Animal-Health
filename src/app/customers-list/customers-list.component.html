@@ -1,0 +1,18 @@
+<div class="container">
+    <h3 class="title">Customers list</h3>
+
+    <div class="navigation">
+        <a href="#">Admin</a> <span> &#xbb; </span> <a href="#">Customers List</a>
+    </div>
+
+    <hr>
+
+    <form class="search-form">
+        <input placeholder="Search" type="text" name="search" id="search">
+        <button type="submit"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> </button>
+    </form>
+
+    <div class="data-table">
+        <app-data-table *ngIf="show"  [columnsToDisplay]="displayCols"> </app-data-table>
+    </div>
+</div>

@@ -2,21 +2,27 @@
     <h3 class="title">Doctors list</h3>
 
     <div class="navigation">
-        <a href="#">Admin</a> <span> &#xbb; </span> <a href="#">Doctor List</a>
+        <a href="#">Admin</a> <span> &#xbb; </span> <a href="#">Doctors List</a>
     </div>
 
     <hr>
 
     <form class="search-form">
         <input placeholder="Search" type="text" name="search" id="search">
-        <button type="submit"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> </button>
+        <button type="submit">
+            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+        </button>
     </form>
 
-    <button class="add-doc">
+    <button class="add-doc" routerLink="/adddoctor">
         <fa-icon [icon]="faPlus"></fa-icon> Add Doctor
     </button>
 
-    <div class="data-table">
-        <app-data-table *ngIf="show" [peopleData]="people" [columnsToDisplay]="columnsToDisplay"> </app-data-table>
+    <div *ngIf="!show" class="data-table center-text">
+        Loading ...
+    </div>
+
+    <div *ngIf="show" class="data-table">
+        <app-data-table [doctorsData]="doctors" [columnsToDisplay]="columnsToDisplay"> </app-data-table>
     </div>
 </div>

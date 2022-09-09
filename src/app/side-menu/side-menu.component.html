@@ -4,10 +4,11 @@
         <hr>
 
         <ul class="side-menu">
-            <li class="side-menu-item"> Doctor List </li>
-            <li class="side-menu-item"> Customer List </li>
-            <li class="side-menu-item"> Teleconsultations List </li>
+            <li class="side-menu-item"> <a routerLink="/doctorslist" class="menu-link"> Doctor List </a> </li>
+            <li class="side-menu-item"> <a routerLink="/customerslist" class="menu-link"> Customer List </a> </li>
+            <li class="side-menu-item"> <a routerLink="/teleconsultationslist" class="menu-link"> Teleconsultations List </a> </li>
             <li class="side-menu-item"> Content Management </li>
+            <li class="side-menu-item"> Logout:Admin </li>
         </ul>
     </div>
     <img class="side-menu-img" src="../../assets/bars-solid.svg" alt="menu icon" width="50px" height="35px" (mouseover)="changeStyle($event)"

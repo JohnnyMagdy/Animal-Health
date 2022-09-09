@@ -1,29 +1,77 @@
-<!-- <span class="Name-Section">{{doctors.fullName}}</span> <br>
-<span class="Title-Section">{{doctors.title}}</span> <br>
-<span class="Email-Section">{{doctors.email}}</span> <br>
-<span class="MobileNumber-Section">{{doctors.mobileNumber}}</span> <br>
-<span class="Gender-Section">{{doctors.gender}}</span> <br>
-<span class="Fees-Section">{{doctors.fees}}</span> <br>
-<span class="Biography-Section">{{doctors.biography}}</span> <br>
-<span class="SlotDuration-Section">{{doctors.slotDuration}}</span> <br>
+<div class="loading-container">
+    <span class="loading" *ngIf="loading">Loading...</span>
+</div>
+<div class="container" *ngIf="!loading">
+    <div class="header">
+        {{doctor.userName}}'s profile details
+    </div>
 
+    <div class="body">
 
-<span class="Doc-Appointment-Section">{{doctors.fullName}}</span> <br>
-<span class="Doc-Schedule-Section">{{doctors.fullName}}</span> (previous & upcoming) -->
+        <div class="upper-body flex-it">
+            <span class="flex-col">
+                <label for="specialization"> Specialization: </label>
+                <input class="field" type="text" readonly disabled value="{{doctor.specialization}}">
 
-<span class="Name-Section">{{people.name}}</span> <br>
+                <label for="email"> Email: </label>
+                <input class="field" type="text" readonly disabled value="{{doctor.email}}">
+            </span>
+
+            <span class="float-right">
+                <label for="slotDuration"> Slot durations: </label>
+                <!-- <textarea class="full-height field" type="text" readonly disabled value="{{doctor.biography}}"> </textarea> -->
+            </span>
+        </div>
+
+        <div class="middle-body flex-it">
+            <span class="flex-col">
+                <label for="mobileNumber"> Mobile number: </label>
+                <input class="field" type="text" readonly disabled value="{{doctor.phoneNumber}}">
+
+                <label for="fees"> Fees: </label>
+                <input class="field" type="text" readonly disabled value="{{doctor.normalFees}}">
+
+                <label for="gender"> Gender: </label>
+                <input class="field" type="text" readonly disabled value="{{doctor.gender}}">
+            </span>
+
+            <span class="float-right">
+                <label for="biography"> Biography: </label>
+                <textarea class="full-height field" type="text" readonly disabled value="{{doctor.bio}}"> </textarea>
+            </span>
+        </div>
+
+        <div class="lower-body flex-it full-height">
+            <div class="flex-col">
+                <label for="schedule"> Doctor Schedule: </label>
+                <textarea class="full-height field" type="text" readonly disabled value="{{doctor.schedule[0]}}"> </textarea>
+            </div>
+
+            <div class="float-right">
+                <label for="biography"> Doctor Appointments: </label>
+                <!-- <textarea class="full-height field" readonly disabled value="{{doctor.starships}}"> </textarea> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <span class="Name-Section">{{people.name}}</span> <br>
+
 <span class="Title-Section">{{people.birth_year}}</span> <br>
 <span class="Email-Section">{{people.eye_color}}</span> <br>
 <span class="MobileNumber-Section">{{people.gender}}</span> <br>
 <span class="Gender-Section">{{people.hair_color}}</span> <br>
 <span class="Fees-Section">{{people.height}}</span> <br>
+
 <span class="Biography-Section">{{people.mass}}</span> <br>
 <span class="SlotDuration-Section">{{people.skin_color}}</span> <br>
+
 <span class="Doc-Appointment-Section">{{people.homeworld}}</span> <br>
 <span class="Doc-Schedule-Section">{{people.films}}</span> <br>
+
 <span class="Doc-Schedule-Section">{{people.species}}</span> <br>
 <span class="Doc-Schedule-Section">{{people.starships}}</span> <br>
 <span class="Doc-Schedule-Section">{{people.vehicles}}</span> <br>
 <span class="Doc-Schedule-Section">{{people.url}}</span> <br>
 <span class="Doc-Schedule-Section">{{people.created}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.edited}}</span> <br>
+<span class="Doc-Schedule-Section">{{people.edited}}</span> <br> -->

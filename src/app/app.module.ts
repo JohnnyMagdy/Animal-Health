@@ -14,6 +14,9 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { DoctorDetailsComponent } from './doctor-details/doctor-details.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { CustomersListComponent } from './customers-list/customers-list.component';
+import { TeleconsultationsListComponent } from './teleconsultations-list/teleconsultations-list.component';
+import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { DataTableComponent } from './data-table/data-table.component';
     DoctorListComponent,
     DoctorDetailsComponent,
     DataTableComponent,
+    CustomersListComponent,
+    TeleconsultationsListComponent,
+    AddDoctorComponent,
   ],
   imports: [
     BrowserModule,

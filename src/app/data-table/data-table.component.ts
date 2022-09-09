@@ -2,7 +2,8 @@ import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IPeople } from '../models/People';
+import { IDoctor } from '../models/Doctor';
+import { DoctorService } from '../services/doctor.service';
 
 @Component({
   selector: 'app-data-table',
@@ -12,34 +13,37 @@ import { IPeople } from '../models/People';
 export class DataTableComponent implements AfterViewInit {
   Details = false;
 
-  row:IPeople = {} as IPeople;
-
   @Input() columnsToDisplay = ['id'];
-  @Input() peopleData: IPeople[] = [];
+  @Input() doctorsData: IDoctor[] = [];
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private cdf: ChangeDetectorRef) { }
+  constructor(private doctorService: DoctorService) { }
 
-  dataSource = new MatTableDataSource(this.peopleData);
+  dataSource = new MatTableDataSource(this.doctorsData);
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.peopleData);
+    this.dataSource = new MatTableDataSource(this.doctorsData);
 
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
 
-  clicked(): void {
-    console.log('clicked');
+  clicked(id: string): void {
+    this.doctorService.changeActivation(id).subscribe();
   }
 
-  showDetails(myRow:IPeople) {
+  showDetails(id: string) {
     this.Details = true;
-    this.row = myRow;
   }
+
   hideDetails() {
     this.Details = false;
   }
+
+  setId(id: string) {
+    this.doctorService.setDoctorId(id);
+  }
+
 }
