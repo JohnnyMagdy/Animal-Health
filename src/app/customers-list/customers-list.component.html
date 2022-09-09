@@ -13,6 +13,6 @@
     </form>
 
     <div class="data-table">
-        <app-data-table *ngIf="show"  [columnsToDisplay]="displayCols"> </app-data-table>
+        <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages" [customersData]="customer" [columnsToDisplay]="displayCols"> </app-data-table>
     </div>
 </div>

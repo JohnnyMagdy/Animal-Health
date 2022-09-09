@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ICustomer } from '../models/Customer';
-import { IPeople } from '../models/People';
 import { CustomerService } from '../services/customer.service';
 
 @Component({
@@ -14,8 +13,11 @@ export class CustomersListComponent implements OnInit {
   faPlus = faPlus;
   
   // customers:ICustomer[] = [];
-  people:IPeople[] = [];
-  displayCols: string[] = ['name'];
+  customer:ICustomer[] = [];
+  displayCols: string[] = ['id','name'];
+
+  currentPage: number = 0;
+  numberOfPages: number = 0;
 
   show = false;
 
@@ -26,9 +28,12 @@ export class CustomersListComponent implements OnInit {
   }
 
   getCustomers(){
-    this.customerService.getCustomers().subscribe({
+    this.customerService.getCustomers(1).subscribe({
       next: (data)=>{
-        this.people = data.results;
+        this.customer = data.content;
+        this.currentPage = data.currentPage;
+        this.numberOfPages = data.totalPages;
+        
         this.cdf.detectChanges();
         this.show = true;
       }

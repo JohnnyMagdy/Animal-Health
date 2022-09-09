@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ICustomer } from '../models/Customer';
 import { IDoctor } from '../models/Doctor';
 import { DoctorService } from '../services/doctor.service';
 
@@ -15,19 +16,31 @@ export class DataTableComponent implements AfterViewInit {
 
   @Input() columnsToDisplay = ['id'];
   @Input() doctorsData: IDoctor[] = [];
+  @Input() customersData: ICustomer[] = [];
+
+  @Input() currentPage: number = 0;
+  @Input() numberOfPages: number = 0;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private doctorService: DoctorService) { }
+  constructor(private doctorService: DoctorService, private cdf: ChangeDetectorRef) { }
 
-  dataSource = new MatTableDataSource(this.doctorsData);
+  doctorDataSource = new MatTableDataSource(this.doctorsData);
+  customerDataSource = new MatTableDataSource(this.customersData)
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.doctorsData);
 
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    if (this.doctorsData.length !== 0) {
+      this.doctorDataSource = new MatTableDataSource(this.doctorsData);
+
+      this.doctorDataSource.sort = this.sort;
+    }
+    if (this.customersData.length !== 0) {
+      this.customerDataSource = new MatTableDataSource(this.customersData);
+
+      this.customerDataSource.sort = this.sort;
+    }
   }
 
   clicked(id: string): void {
@@ -44,6 +57,15 @@ export class DataTableComponent implements AfterViewInit {
 
   setId(id: string) {
     this.doctorService.setDoctorId(id);
+  }
+
+  setCustomer(customers: ICustomer[]) {
+    this.customersData = customers;
+    console.log(this.customersData);
+
+    this.customerDataSource = new MatTableDataSource(this.customersData);
+
+    this.customerDataSource.sort = this.sort;
   }
 
 }

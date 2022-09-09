@@ -1,4 +1,10 @@
+export interface ICustomerResult{
+    content:ICustomer[],
+    totalPages:number,
+    currentPage:number
+}
+
 export interface ICustomer{
-    customerID: string,
-    CustomerName: string,
+    id: string,
+    name: string,
 }

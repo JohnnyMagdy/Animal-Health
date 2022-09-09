@@ -1,0 +1,26 @@
+.container{
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+fa-icon{
+    cursor: pointer;
+
+    margin: 0% 2%;
+    
+    font-size: 150%;
+
+    transition: all .2s ease-in-out;
+}
+
+fa-icon:hover{
+    transform: scale(1.5);
+
+    color: #bfbfb7;
+}
+
+.disabled{
+    cursor: not-allowed;
+}

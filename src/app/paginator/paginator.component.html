@@ -1,0 +1,5 @@
+<div class="container">
+    <fa-icon (click)="getPrevious()" [ngClass]="{'disabled': !hasPrevious()}" [icon]="faAngleLeft"></fa-icon>
+    <span> Page {{currentPage}} of {{numberOfPages}} </span>
+    <fa-icon (click)="getNext()" [ngClass]="{'disabled': !hasNext()}" [icon]="faAngleRight"></fa-icon>
+</div>

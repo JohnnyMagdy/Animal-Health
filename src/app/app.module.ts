@@ -17,7 +17,7 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { TeleconsultationsListComponent } from './teleconsultations-list/teleconsultations-list.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
-
+import { PaginatorComponent } from './paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
     CustomersListComponent,
     TeleconsultationsListComponent,
     AddDoctorComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

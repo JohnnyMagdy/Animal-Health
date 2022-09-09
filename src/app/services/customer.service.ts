@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPeopleRes } from '../models/People';
+import { Observable } from 'rxjs';
+import { ICustomer, ICustomerResult } from '../models/Customer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
+  baseUrl = 'http://andrew100-001-site1.etempurl.com/api/Admin/'
 
   constructor(private http: HttpClient) { }
 
-  public getCustomers(){
-    return this.http.get<IPeopleRes>('http://davidsamy-001-site1.dtempurl.com/api/Admin/SeeMoreCustomers');
+  public getCustomers(page:number):Observable<ICustomerResult>{
+    return this.http.get<ICustomerResult>(this.baseUrl+`DisplayAllCustomers?counter=${page}`);
   }
 }
