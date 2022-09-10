@@ -1,11 +1,11 @@
 Require tokens for all -----
-[POST] http://davidsamy-001-site1.dtempurl.com/api/Admin/AddDoctor
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayAllDoctors
-[POST] http://davidsamy-001-site1.dtempurl.com/api/Admin/ActivateDoctor
-[POST] http://davidsamy-001-site1.dtempurl.com/api/Admin/DeActivateDoctor
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayDoctorDetails
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayDoctorPreviousAppointments
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayDoctorUpcomingAppointments
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayDoctorSchedule
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayAllCustomers
-[GET] http://davidsamy-001-site1.dtempurl.com/api/Admin/DisplayAllArticles
+[POST] http://andrew100-001-site1.etempurl.com/api/Admin/AddDoctor
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllDoctors
+[POST] http://andrew100-001-site1.etempurl.com/api/Admin/ActivateDoctor
+[POST] http://andrew100-001-site1.etempurl.com/api/Admin/DeActivateDoctor
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorDetails
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorPreviousAppointments
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorUpcomingAppointments
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorSchedule
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllCustomers
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllArticles

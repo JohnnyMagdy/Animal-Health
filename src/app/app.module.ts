@@ -8,6 +8,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { AppComponent } from './app.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
@@ -18,6 +24,8 @@ import { CustomersListComponent } from './customers-list/customers-list.componen
 import { TeleconsultationsListComponent } from './teleconsultations-list/teleconsultations-list.component';
 import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { ArticleListComponent } from './article-list/article-list.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -30,21 +38,27 @@ import { PaginatorComponent } from './paginator/paginator.component';
     TeleconsultationsListComponent,
     AddDoctorComponent,
     PaginatorComponent,
+    ArticleListComponent,
+    ScheduleComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatTableModule,
     FormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
     MatSortModule,
     MatPaginatorModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
   ],
+  exports: [ScheduleComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

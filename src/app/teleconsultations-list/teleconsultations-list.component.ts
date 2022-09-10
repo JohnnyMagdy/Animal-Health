@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { faLessThanEqual, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { IPeople } from '../models/People';
 import { ITeleconsultation } from '../models/Teleconsultaion';
 import { TeleconsultaionService } from '../services/teleconsultaion.service';
 
@@ -12,10 +11,9 @@ import { TeleconsultaionService } from '../services/teleconsultaion.service';
 export class TeleconsultationsListComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
   show = false;
-  columnsToDisplay = ['birth_year'];
+  columnsToDisplay = ['customerID','customerName','doctorID','doctorName','appointmentID','date','status'];
 
-  @Input() teleconsultaionsList:ITeleconsultation[] = [];
-  people:IPeople[] = [];
+  teleconsultaions:ITeleconsultation[] = [];
 
   constructor(private teleconsultaionService: TeleconsultaionService, private cdf: ChangeDetectorRef) { }
 
@@ -24,11 +22,13 @@ export class TeleconsultationsListComponent implements OnInit {
   }
 
   getTeleconsultaions(){
-    this.teleconsultaionService.getTeleconsultaions().subscribe({
+    this.teleconsultaionService.getTeleconsultaions(1).subscribe({
       next: (data)=>{
-        this.people = data.results;
+        this.teleconsultaions = data;
         this.cdf.detectChanges();
         this.show = true;
+        console.log(data);
+        
       }
     });
   }

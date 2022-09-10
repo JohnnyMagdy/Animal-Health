@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IDoctor, IDoctorResult } from '../models/Doctor';
 import { IDoctorDetails } from '../models/DoctorDetails';
 import { ISchedule } from '../models/Schedule';
+import { ISlot } from '../models/Slot';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,9 @@ export class DoctorService {
 
   public getDoctorSchedule(id:string):Observable<ISchedule[]>{
     return this.http.get<ISchedule[]>(this.baseUrl+`DisplayDoctorSchedule?Id=${id}`);
+  }
+
+  public getDoctorSlots(id:string):Observable<ISlot[]>{
+    return this.http.get<ISlot[]>(this.baseUrl+``)
   }
 }

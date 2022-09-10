@@ -7,7 +7,6 @@
     </div>
 
     <div class="body">
-
         <div class="upper-body flex-it">
             <span class="flex-col">
                 <label for="specialization"> Specialization: </label>
@@ -18,7 +17,7 @@
             </span>
 
             <span class="float-right">
-                <label for="slotDuration"> Slot durations: </label>
+                <label for="slotDuration"> Doctor Appointments: </label>
                 <!-- <textarea class="full-height field" type="text" readonly disabled value="{{doctor.biography}}"> </textarea> -->
             </span>
         </div>
@@ -41,16 +40,9 @@
             </span>
         </div>
 
-        <div class="lower-body flex-it full-height">
-            <div class="flex-col">
-                <label for="schedule"> Doctor Schedule: </label>
-                <textarea class="full-height field" type="text" readonly disabled value="{{doctor.schedule[0]}}"> </textarea>
-            </div>
-
-            <div class="float-right">
-                <label for="biography"> Doctor Appointments: </label>
-                <!-- <textarea class="full-height field" readonly disabled value="{{doctor.starships}}"> </textarea> -->
-            </div>
+        <div class="footer-body">
+            <label for="schedule"> Doctor Schedule: </label>
+            <app-schedule></app-schedule>
         </div>
     </div>
 </div>

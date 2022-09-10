@@ -22,23 +22,24 @@ export class AddDoctorComponent implements OnInit {
 
   })
 
-  error:boolean = false;
-  success:boolean = false;
+  error: boolean = false;
+  success: boolean = false;
 
   nrSelect = "default";
 
-  constructor(private fb:FormBuilder, private doctorService:DoctorService) { }
+  constructor(private fb: FormBuilder, private doctorService: DoctorService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmitNewDoctor():void {
-    console.log(this.addDoctorForm.value);
+  onSubmitNewDoctor(): void {
+    this.error = false;
+    this.success = false;
     this.doctorService.addDoctor(this.addDoctorForm.value).subscribe({
-      next: (data)=>{
-        if (data === false){
+      next: (data) => {
+        if (data === false) {
           this.error = true;
-        }else{
+        } else {
           this.success = true;
           this.addDoctorForm.reset();
         }

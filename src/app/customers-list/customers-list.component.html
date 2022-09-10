@@ -12,6 +12,10 @@
         <button type="submit"> <fa-icon [icon]="faMagnifyingGlass"></fa-icon> </button>
     </form>
 
+    <div *ngIf="!show" class="data-table center-text">
+        Loading ...
+    </div>
+
     <div class="data-table">
         <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages" [customersData]="customer" [columnsToDisplay]="displayCols"> </app-data-table>
     </div>

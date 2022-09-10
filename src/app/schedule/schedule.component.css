@@ -1,0 +1,50 @@
+.btn-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-group{
+    display: flex;
+    width: 100%;
+}
+
+.btn-group-right{
+    justify-content: end;
+}
+
+.btn{
+    display: inline-block;
+
+    background-color: #3f51b5;
+    color: white;
+    padding: 3%;
+    margin: 1%;
+
+    border-radius: 10%;
+
+    cursor: pointer;
+}
+
+.float-right{
+    float: left;
+}
+
+.btn:hover{
+    background-color: #1b33bb;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.schedule-container{
+    height: 80%;
+}
+
+
+
+
+
+.test{
+    border: solid 1px black;
+}

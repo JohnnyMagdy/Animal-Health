@@ -14,7 +14,7 @@ export interface IDoctorDetails {
     bio: string,
     
     schedule: ISchedule[],
-    // slotDuration: number,
+    slotDuration: number,
     
     // appointments: IAppointment,
 }

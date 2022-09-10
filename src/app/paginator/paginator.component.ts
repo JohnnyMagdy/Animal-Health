@@ -1,7 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { ICustomer } from '../models/Customer';
+import { IDoctor } from '../models/Doctor';
+import { ITeleconsultation } from '../models/Teleconsultaion';
 import { CustomerService } from '../services/customer.service';
+import { DoctorService } from '../services/doctor.service';
+import { TeleconsultaionService } from '../services/teleconsultaion.service';
 
 @Component({
   selector: 'app-paginator',
@@ -16,9 +20,13 @@ export class PaginatorComponent implements OnInit {
   @Input() numberOfPages: number = 0;
   @Input() resultsNumber: number = 0;
 
-  @Output() customers = new EventEmitter<ICustomer[]>();
+  @Input() component:string = '';
 
-  constructor(private customerService: CustomerService) {
+  @Output() customers = new EventEmitter<ICustomer[]>();
+  @Output() doctors = new EventEmitter<IDoctor[]>();
+  @Output() teleconsultaions = new EventEmitter<ITeleconsultation[]>();
+
+  constructor(private customerService: CustomerService, private doctorService: DoctorService, private teleconsultationService:TeleconsultaionService) {
   }
 
   ngOnInit(): void {
@@ -43,22 +51,54 @@ export class PaginatorComponent implements OnInit {
   getPrevious() {
     if (this.hasPrevious()) {
       this.currentPage--;
-      this.customerService.getCustomers(this.currentPage).subscribe({
-        next: (data) => {
-          this.customers.emit(data.content);
-        }
-      });
+      if (this.component == 'customer') {
+        this.getPreviousOrNextCustomer();
+      }
+      if (this.component == 'doctor'){
+        this.getPreviousOrNextDoctor();
+      }
+      if(this.component == 'tele'){
+        this.getPreviousOrNextTeleconsultation();
+      }
     }
   }
   getNext() {
     if (this.hasNext()) {
       this.currentPage++;
-      this.customerService.getCustomers(this.currentPage).subscribe({
-        next: (data) => {
-          this.customers.emit(data.content);
-        }
-      });
+      if (this.component == 'customer') {
+        this.getPreviousOrNextCustomer();
+      }
+      if (this.component == 'doctor'){
+        this.getPreviousOrNextDoctor();
+      }
+      if(this.component == 'tele'){
+        this.getPreviousOrNextTeleconsultation();
+      }
     }
+  }
+
+  getPreviousOrNextCustomer(){
+    this.customerService.getCustomers(this.currentPage).subscribe({
+      next: (data) => {
+        this.customers.emit(data.content);
+      }
+    });
+  }
+
+  getPreviousOrNextDoctor(){
+    this.doctorService.getDoctors(this.currentPage).subscribe({
+      next: (data)=>{
+        this.doctors.emit(data.content);
+      }
+    });
+  }
+
+  getPreviousOrNextTeleconsultation(){
+    this.teleconsultationService.getTeleconsultaions(this.currentPage).subscribe({
+      next: (data)=>{
+        this.teleconsultaions.emit(data);
+      }
+    });
   }
 
 }

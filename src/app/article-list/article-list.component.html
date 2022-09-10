@@ -1,8 +1,8 @@
 <div class="container">
-    <h3 class="title">Teleconsultaions list</h3>
+    <h3 class="title">Customers list</h3>
 
     <div class="navigation">
-        <a href="#">Admin</a> <span> &#xbb; </span> <a href="#">Teleconsultaions List</a>
+        <a href="#">Admin</a> <span> &#xbb; </span> <a href="#">Customers List</a>
     </div>
 
     <hr>
@@ -13,6 +13,6 @@
     </form>
 
     <div class="data-table">
-        <app-data-table *ngIf="show" [teleconsultationsData]="teleconsultaions" [columnsToDisplay]="columnsToDisplay"> </app-data-table>
+        <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages" [articlesData]="article" [columnsToDisplay]="displayCols"> </app-data-table>
     </div>
 </div>

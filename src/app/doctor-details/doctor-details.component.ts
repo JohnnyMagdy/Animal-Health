@@ -29,6 +29,8 @@ export class DoctorDetailsComponent implements OnInit {
       (data) => {
         this.doctor = data[0];
         this.doctor.schedule = data[1];
+        console.log(this.doctor.schedule);
+        
         
         this.loading = false;
       }
