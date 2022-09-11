@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { faLessThanEqual, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { ITeleconsultation } from '../models/Teleconsultaion';
 import { TeleconsultaionService } from '../services/teleconsultaion.service';
 
@@ -11,9 +11,12 @@ import { TeleconsultaionService } from '../services/teleconsultaion.service';
 export class TeleconsultationsListComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
   show = false;
-  columnsToDisplay = ['customerID','customerName','doctorID','doctorName','appointmentID','date','status'];
+  columnsToDisplay:string[] = ['customerId', 'customerName', 'doctorId', 'doctorName', 'appointmentId', 'startTime', 'status'];
 
-  teleconsultaions:ITeleconsultation[] = [];
+  teleconsultaions: ITeleconsultation[] = [];
+
+  currentPage: number = 0;
+  numberOfPages: number = 0;
 
   constructor(private teleconsultaionService: TeleconsultaionService, private cdf: ChangeDetectorRef) { }
 
@@ -21,14 +24,15 @@ export class TeleconsultationsListComponent implements OnInit {
     this.getTeleconsultaions();
   }
 
-  getTeleconsultaions(){
+  getTeleconsultaions() {
     this.teleconsultaionService.getTeleconsultaions(1).subscribe({
-      next: (data)=>{
+      next: (data) => {
         this.teleconsultaions = data;
+        // this.currentPage = data.currentPage;
+        // this.totalPages = data.totalPages;
+
         this.cdf.detectChanges();
         this.show = true;
-        console.log(data);
-        
       }
     });
   }

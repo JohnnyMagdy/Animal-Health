@@ -13,7 +13,6 @@ export class TeleconsultaionService {
   constructor(private http:HttpClient) { }
 
   public getTeleconsultaions(page:number): Observable<ITeleconsultation[]> {
-    //DisplayTeleconsultation
-    return this.http.get<ITeleconsultation[]>(this.baseUrl+`DisplayTeleConsuultation?counter=${page}`);
+    return this.http.get<ITeleconsultation[]>(this.baseUrl+`DisplayTeleconsultation?counter=${page}`);
   }
 }

@@ -14,4 +14,12 @@ export class CustomerService {
   public getCustomers(page:number):Observable<ICustomerResult>{
     return this.http.get<ICustomerResult>(this.baseUrl+`DisplayAllCustomers?counter=${page}`);
   }
+
+  public getCustomerPreviousAppointments(id:string){
+    return this.http.get<ICustomer>(this.baseUrl+`DisplayCustomerPreviousAppointments?Id=${id}`);
+  }
+
+  public getCustomerUpcomingAppointments(id:string){
+    return this.http.get<ICustomer>(this.baseUrl+`DisplayCustomerUpcomingAppointments?Id=${id}`);
+  }
 }

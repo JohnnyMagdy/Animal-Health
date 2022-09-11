@@ -8,4 +8,4 @@ Require tokens for all -----
 [GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorUpcomingAppointments
 [GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayDoctorSchedule
 [GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllCustomers
-[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllArticles
+[GET] http://andrew100-001-site1.etempurl.com/api/Admin/DisplayAllArticles ***

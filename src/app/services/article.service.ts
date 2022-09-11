@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IArticle } from '../models/Article';
+import { IArticle, IArticleResult } from '../models/Article';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getAllArticles():Observable<IArticle[]>{
-    return this.http.get<IArticle[]>(this.baseUrl+'DisplayAllArticles');
+  getAllArticles(page:number):Observable<IArticleResult>{
+    return this.http.get<IArticleResult>(this.baseUrl+`DisplayAllArticles?counter=${page}`);
   }
 
   getArticleDetails():Observable<IArticle>{

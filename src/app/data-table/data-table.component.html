@@ -1,57 +1,57 @@
-<!-- Doctor Table----------------------------------------------------------------------------------- -->
+<div class="overlay" *ngIf="Details" (click)="hideDetails()"></div>
+
+<!-- Doctor Table----------------------------------------------------------------------------------------- -->
 <div *ngIf="doctorsData.length !== 0">
     <table mat-table matSort [dataSource]="doctorDataSource" class="table">
 
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor ID </th>
-            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.id}}</td>
+            <td (click)="showDetails()" mat-cell *matCellDef="let row">{{row.id}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="userName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
-            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.userName}}</td>
-            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
+            <td (click)="showDetails()" mat-cell *matCellDef="let row" class="table-cell">{{row.userName}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="phoneNumber">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone Number </th>
-            <td (click)="showDetails(row.id)" mat-cell *matCellDef="let row">{{row.phoneNumber}}</td>
+            <td (click)="showDetails()" mat-cell *matCellDef="let row">{{row.phoneNumber}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="eye_color">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Eye Color </th>
             <td mat-cell *matCellDef="let row">{{row.eye_color}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="gender">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
             <td mat-cell *matCellDef="let row">{{row.gender}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="isActivated">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Activate / De-activate </th>
             <td mat-cell *matCellDef="let row">
                 <div *ngIf="row.isActivated !== undefined">
                     <label class="switch">
-                        <input type="checkbox" [(ngModel)]="row.isActivated" (change)="ngAfterViewInit(); clicked(row.id);">
+                        <input type="checkbox" [(ngModel)]="row.isActivated"
+                            (change)="ngAfterViewInit(); clicked(row.id);">
                         <span class="slider round"></span>
                     </label>
                 </div>
             </td>
         </ng-container>
-    
+
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
-        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row" (click)="setId(myRow.id)"></tr>
+        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row" (click)="setDoctorId(myRow.id)"></tr>
     </table>
-    <app-paginator [component]="'doctor'" [resultsNumber]="doctorsData.length" (doctors)="setDoctors($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>
+    <app-paginator [component]="'doctor'" [resultsNumber]="doctorsData.length" (doctors)="setDoctors($event)"
+        [currentPage]="currentPage" [numberOfPages]="numberOfPages"></app-paginator>
+        
+    <app-doctor-details class="details" *ngIf="Details"></app-doctor-details>
 </div>
 
-<div class="overlay" *ngIf="Details" (click)="hideDetails()"></div>
-<app-doctor-details class="doc-details" *ngIf="Details"></app-doctor-details>
-
-<!-- Customer Table------------------------------------------------------------------------------------- -->
+<!-- Customer Table--------------------------------------------------------------------------------------- -->
 <div *ngIf="customersData.length !== 0">
     <table mat-table matSort [dataSource]="customerDataSource" class="table">
 
@@ -59,72 +59,127 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
             <td mat-cell *matCellDef="let row">{{row.id}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.name}}</td>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.name}}</td>
         </ng-container>
-    
+
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
-        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row"></tr>
+        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row" (click)="showDetails()" ></tr>
     </table>
-    
-    <app-paginator [component]="'customer'" [resultsNumber]="customersData.length" (customers)="setCustomers($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>    
+
+    <app-paginator [component]="'customer'" [resultsNumber]="customersData.length" (customers)="setCustomers($event)"
+        [currentPage]="currentPage" [numberOfPages]="numberOfPages"></app-paginator>
+        
+    <app-customer-details class="details" *ngIf="Details"> </app-customer-details>
 </div>
 
-<!-- Teleconsultation Table------------------------------------------------------------------------------------- -->
+
+<!-- Teleconsultation Table------------------------------------------------------------------------------- -->
 <div *ngIf="teleconsultationsData.length !== 0">
-    <table mat-table matSort [dataSource]="teleconsultationsData" class="table">
+    <table mat-table matSort [dataSource]="teleconsultationDataSource" class="table">
 
-        <ng-container matColumnDef="customerID">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
-            <td mat-cell *matCellDef="let row">{{row.customerID}}</td>
+        <ng-container matColumnDef="customerId">
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Customer ID </th>
+            <td mat-cell *matCellDef="let row">{{row.customerId}}</td>
         </ng-container>
-    
+
         <ng-container matColumnDef="customerName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.customerName}}</td>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.customerName}}</td>
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.customerName}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="doctorID">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor ID </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.doctorID}}</td>
+        <ng-container matColumnDef="doctorId">
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Doctor ID </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.doctorId}}</td>
         </ng-container>
 
         <ng-container matColumnDef="doctorName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor Name </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.doctorName}}</td>
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Doctor Name </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.doctorName}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="appointmentID">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Appointment ID </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.appointmentID}}</td>
+        <ng-container matColumnDef="appointmentId">
+            <th class="width-10" mat-header-cell *matHeaderCellDef mat-sort-header> Appointment ID </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.appointmentId}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="startTime">
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Date/Time </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.startTime}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th class="width-20" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.status}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
+        <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row"></tr>
+    </table>
+
+    <app-paginator [component]="'tele'" [resultsNumber]="teleconsultationsData.length"
+        (teleconsultaions)="setTeleconsultations($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages">
+    </app-paginator>
+</div>
+
+<!-- Article Table---------------------------------------------------------------------------------------- -->
+<div *ngIf="articlesData.length !== 0">
+    <table mat-table matSort [dataSource]="articleDataSource" class="table">
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+            <td mat-cell *matCellDef="let row">{{row.title}}</td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date/Time </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.date}}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.date}}</td>
         </ng-container>
 
         <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-            <td mat-cell *matCellDef="let row"
-                style="max-width: 0px;min-width: 0px;overflow: hidden;">{{row.status}}</td>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.status}}</td>
         </ng-container>
-    
+
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.type}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="authorName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created By </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.authorName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="publishDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.publishDate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastModifiedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified By </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.lastModifiedBy}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="editDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Modified On </th>
+            <td mat-cell *matCellDef="let row" class="table-cell">{{row.editDate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let row" class="table-cell width-20">
+                <button class="btn" >Edit</button>
+                <button class="btn" >Delete</button>
+            </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="table-head"></tr>
         <tr mat-row *matRowDef="let myRow; columns: columnsToDisplay;" class="table-row"></tr>
     </table>
-    
-    <app-paginator [component]="'tele'" [resultsNumber]="customersData.length" (teleconsultaions)="setTeleconsultations($event)" [currentPage]="currentPage" [numberOfPages]="numberOfPages" ></app-paginator>    
+
+    <app-paginator [component]="'article'" [resultsNumber]="articlesData.length" (articles)="setArticles($event)"
+        [currentPage]="currentPage" [numberOfPages]="numberOfPages"></app-paginator>
 </div>

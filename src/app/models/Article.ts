@@ -1,3 +1,8 @@
+export interface IArticleResult{
+    content: IArticle[],
+    currentPage:number,
+    totalPages:number
+}
 export interface IArticle {
     name: string,
     date: Date,

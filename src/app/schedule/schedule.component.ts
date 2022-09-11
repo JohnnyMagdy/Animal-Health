@@ -15,7 +15,6 @@ import {
   addHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -123,7 +122,7 @@ export class ScheduleComponent {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private modal: NgbModal) {}
+  constructor() {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

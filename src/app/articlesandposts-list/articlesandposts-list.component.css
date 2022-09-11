@@ -40,7 +40,8 @@
 .search-form fa-icon{
     margin: 0.3rem;
 }
-.search-form button{
+
+.btn{
     background: none;
     border: none;
 
@@ -67,4 +68,28 @@
 
 .data-table{
     margin-top: 1rem;
+}
+
+.flex-container{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container .btn{
+    margin: 3% 1%;
+    padding: 1%;
+
+    transition: 0.5s;
+}
+
+.flex-container .btn:hover{
+    color: blue;
+    
+    background-color: #e0e0d6;
+}
+
+.active-btn{
+    color: blue;
+    
+    background-color: #e0e0d6;
 }

@@ -17,6 +17,7 @@ export class DataTableComponent implements AfterViewInit {
   Details = false;
 
   @Input() columnsToDisplay = ['id'];
+
   @Input() doctorsData: IDoctor[] = [];
   @Input() customersData: ICustomer[] = [];
   @Input() articlesData: IArticle[] = [];
@@ -33,18 +34,28 @@ export class DataTableComponent implements AfterViewInit {
   doctorDataSource = new MatTableDataSource(this.doctorsData);
   customerDataSource = new MatTableDataSource(this.customersData);
   teleconsultationDataSource = new MatTableDataSource(this.teleconsultationsData);
+  articleDataSource = new MatTableDataSource(this.articlesData);
 
   ngAfterViewInit() {
 
     if (this.doctorsData.length !== 0) {
       this.doctorDataSource = new MatTableDataSource(this.doctorsData);
-
       this.doctorDataSource.sort = this.sort;
     }
+
     if (this.customersData.length !== 0) {
       this.customerDataSource = new MatTableDataSource(this.customersData);
-
       this.customerDataSource.sort = this.sort;
+    }
+
+    if (this.teleconsultationsData.length !== 0) {
+      this.teleconsultationDataSource = new MatTableDataSource(this.teleconsultationsData);
+      this.teleconsultationDataSource.sort = this.sort;
+    }
+
+    if (this.articlesData.length !== 0) {
+      this.articleDataSource = new MatTableDataSource(this.articlesData);
+      this.articleDataSource.sort = this.sort;
     }
   }
 
@@ -52,7 +63,7 @@ export class DataTableComponent implements AfterViewInit {
     this.doctorService.changeActivation(id).subscribe();
   }
 
-  showDetails(id: string) {
+  showDetails() {
     this.Details = true;
   }
 
@@ -60,7 +71,7 @@ export class DataTableComponent implements AfterViewInit {
     this.Details = false;
   }
 
-  setId(id: string) {
+  setDoctorId(id: string) {
     this.doctorService.setDoctorId(id);
   }
 
@@ -86,6 +97,14 @@ export class DataTableComponent implements AfterViewInit {
     this.teleconsultationDataSource = new MatTableDataSource(this.teleconsultationsData);
 
     this.teleconsultationDataSource.sort = this.sort;
+  }
+
+  setArticles(articles: IArticle[]){
+    this.articlesData = articles;
+
+    this.articleDataSource = new MatTableDataSource(this.articlesData);
+
+    this.articleDataSource.sort = this.sort;
   }
 
 }

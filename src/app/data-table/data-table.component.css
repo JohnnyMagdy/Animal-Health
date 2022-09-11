@@ -79,7 +79,7 @@ input:checked+.slider:before {
     background-color: #f5f5ee;
 }
 
-.doc-details{
+.details{
     position: fixed;
     top: 10%;
     left: 20%;
@@ -104,4 +104,35 @@ input:checked+.slider:before {
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
     cursor: pointer;
+}
+
+.width-20{
+    width:20%;
+}
+.width-10{
+    width:1%;
+}
+
+.table-cell{
+    max-width: 0px;
+    min-width: 0px;
+    overflow: hidden;
+}
+
+.btn{
+    margin: 1%;
+    padding: 5%;
+
+    cursor: pointer;
+
+    background-color: white;
+    border: solid 1px black;
+
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color: #b9b9ad;
+
+    color: white;
 }
