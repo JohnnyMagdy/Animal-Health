@@ -4,9 +4,15 @@
 <div class="container" *ngIf="!loading">
     <div class="header">
         {{doctor.userName}}'s profile details
+        <button (click)="deleteDoctor()" class="btn btn-danger btn-float-right" >Delete</button>
     </div>
 
-    <div class="body">
+    <div class="text-center" *ngIf="deleteSuccess">
+        {{msg}}
+        <div>You will be redirected in 3 secounds.</div>
+    </div>
+
+    <div *ngIf="!deleteSuccess" class="body">
         <div class="upper-body flex-it">
             <span class="flex-col">
                 <label for="specialization"> Specialization: </label>

@@ -1,7 +1,12 @@
-export interface IDoctorResult{
+export interface IDoctorResult {
     content: IDoctor[],
-    totalPages:number,
-    currentPage:number
+    totalPages: number,
+    currentPage: number
+}
+
+export interface IDoctorDeleteResult {
+    isSuccess: boolean,
+    message: string
 }
 
 export interface IDoctor {

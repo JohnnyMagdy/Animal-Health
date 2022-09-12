@@ -88,11 +88,28 @@ textarea{
     margin-top: 3%;
 }
 
+.btn-danger{
+    color: white;
 
+    background-color: red;
+    border: none;
 
+    border-radius: 20px;
+}
 
+.btn{
+    padding: 1%;
 
+    cursor: pointer;
+}
 
+.btn-float-right{
+    float: right;
+}
+
+.text-center{
+    text-align: center;
+}
 
 
 

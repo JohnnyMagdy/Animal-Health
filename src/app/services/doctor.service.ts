@@ -47,4 +47,8 @@ export class DoctorService {
   public getDoctorSlots(id:string):Observable<ISlot[]>{
     return this.http.get<ISlot[]>(this.baseUrl+``)
   }
+
+  public deleteDoctor(id:string){
+    return this.http.post(this.baseUrl+`DeleteDoctor?Id=${id}`,'');
+  }
 }
