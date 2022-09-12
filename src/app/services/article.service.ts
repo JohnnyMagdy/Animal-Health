@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IArticle, IArticleResult } from '../models/Article';
+import { IPostResult } from '../models/Post';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class ArticleService {
 
   editArticle(){
     return this.http.post(this.baseUrl+'',{});
+  }
+
+  getAllPosts():Observable<IPostResult>{
+    return this.http.get<IPostResult>(this.baseUrl+'DisplayAllPosts');
   }
 }

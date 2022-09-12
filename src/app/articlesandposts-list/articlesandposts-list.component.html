@@ -1,5 +1,6 @@
 <div class="container">
-    <h3 class="title">Articles list</h3>
+    <h3 *ngIf="article" class="title">Articles list</h3>
+    <h3 *ngIf="!article" class="title">Posts list</h3>
 
     <div class="navigation">
         <a href="#">Admin</a> <span> &#xbb; </span> <a routerLink="articles-and-posts">Articles List</a>
@@ -9,7 +10,7 @@
 
     <div class="flex-container">
         <button (click)="activateView('Article')" id="Article" class="btn active-btn">Articles</button>
-        <button (click)="activateView('Post')" id="Post" class="btn">Posts</button>
+        <button (click)="activateView('Post'); getAllPosts();" id="Post" class="btn">Posts</button>
     </div>
 
     <form class="search-form">
@@ -19,8 +20,12 @@
         </button>
     </form>
 
-    <div class="data-table">
+    <div *ngIf="article" class="data-table">
         <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
-            [articlesData]="article" [columnsToDisplay]="displayCols"> </app-data-table>
+            [articlesData]="articles" [columnsToDisplay]="displayCols"> </app-data-table>
+    </div>
+    <div *ngIf="!article" class="data-table">
+        <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
+            [postsData]="posts" [columnsToDisplay]="displayCols"> </app-data-table>
     </div>
 </div>

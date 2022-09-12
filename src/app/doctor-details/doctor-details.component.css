@@ -34,7 +34,6 @@ textarea{
 .flex-col{
     display: flex;
     flex-direction: column;
-    width: 48%;
 }
 
 .container .body .flex-it{
@@ -56,8 +55,8 @@ textarea{
 .double-height{
     height: 200%;
 }
-.full-width{
-    width: 100%;
+.full-field-width{
+    width: 48%;
 }
 
 .container .body .field{
@@ -84,7 +83,7 @@ textarea{
     top: -50%;
 }
 
-.footer-body{
+.margin-top{
     margin-top: 3%;
 }
 
@@ -109,6 +108,10 @@ textarea{
 
 .text-center{
     text-align: center;
+}
+
+textarea{
+    width: 93%;
 }
 
 

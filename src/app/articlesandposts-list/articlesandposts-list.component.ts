@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { IArticle } from '../models/Article';
+import { IPost } from '../models/Post';
 import { ArticleService } from '../services/article.service';
 
 @Component({
@@ -15,11 +16,13 @@ export class ArticlesandpostsListComponent implements OnInit {
 
   currentPage: number = 0;
   numberOfPages: number = 0;
+  article = true;
 
-  article: IArticle[] = [];
+  posts: IPost[] = [];
+  articles: IArticle[] = [];
   displayCols = ['title', 'date', 'status', 'type', 'authorName', 'publishDate', 'lastModifiedBy', 'editDate', 'action'];
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService, private cdf: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getAllArticles();
@@ -28,8 +31,7 @@ export class ArticlesandpostsListComponent implements OnInit {
   getAllArticles() {
     this.articleService.getAllArticles(1).subscribe({
       next: (data) => {
-        console.log(data);
-        this.article = data.content;
+        this.articles = data.content;
         this.currentPage = data.currentPage;
         this.numberOfPages = data.totalPages;
 
@@ -39,16 +41,17 @@ export class ArticlesandpostsListComponent implements OnInit {
   }
 
   getAllPosts() {
-    // this.articleService.getAllArticles().subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //     this.article = data.content;
-    //     this.currentPage = data.currentPage;
-    //     this.numberOfPages = data.totalPages;
+    this.articleService.getAllPosts().subscribe({
+      next: (data) => {
+        this.posts = data.content;
+        this.currentPage = data.currentPage;
+        this.numberOfPages = data.totalPages;
 
-    //     this.show = true;
-    //   }
-    // });
+        this.show = true;
+        console.log(data);
+        
+      }
+    });
   }
 
   activateView(view: string) {
@@ -58,10 +61,12 @@ export class ArticlesandpostsListComponent implements OnInit {
     if (view === 'Article') {
       articleButtonElement?.classList.add('active-btn');
       this.deactivateView(postButtonElement);
+      this.article = true;
     } else {
       if (view === 'Post') {
         postButtonElement?.classList.add('active-btn');
         this.deactivateView(articleButtonElement);
+        this.article = false;
       }
     }
   }

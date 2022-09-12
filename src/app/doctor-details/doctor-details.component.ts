@@ -28,37 +28,28 @@ export class DoctorDetailsComponent implements OnInit {
   getDoctorDetails() {
     return this.doctorService.getDoctotId()
     .pipe(switchMap(id => {
-      return forkJoin([this.doctorService.getDoctorDetails(id), this.doctorService.getDoctorSchedule(id)])
+      return forkJoin([this.doctorService.getDoctorDetails(id),
+        this.doctorService.getDoctorSchedule(id),
+        this.doctorService.getDoctorPreviousAppointments(id),
+        this.doctorService.getDoctorUpcomingAppointments(id)
+      ])
     }))
     .subscribe(
       (data) => {
         this.doctor = data[0];
         this.doctor.schedule = data[1];
-        console.log(this.doctor.schedule);
-        
+        this.doctor.previousAppointments = data[2];
+        this.doctor.upcomingAppointments = data[3];
         
         this.loading = false;
       }
     );
-    // return this.doctorService.getDoctotId().subscribe({
-    //   next: (doctorId) => {
-    //     if (doctorId && this.cashedId !== doctorId) {
-    //       this.cashedId = doctorId;
-    //       this.doctorService.getDoctorDetails(doctorId).subscribe({
-    //         next: (data) => {
-    //           this.doctor = data;
-    //           this.loading = false;
-    //         }
-    //       })
-    //     }
-    //   }
-    // });
   }
 
   deleteDoctor(){
     return this.doctorService.getDoctotId()
     .pipe(switchMap(id => {
-      return forkJoin([this.doctorService.deleteDoctor(id), this.doctorService.getDoctorSchedule(id)])
+      return forkJoin([this.doctorService.deleteDoctor(id)])
     }))
     .subscribe(
       (data:any) => {

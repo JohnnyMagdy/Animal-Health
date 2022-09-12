@@ -26,6 +26,8 @@ import { PaginatorComponent } from './paginator/paginator.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ArticlesandpostsListComponent } from './articlesandposts-list/articlesandposts-list.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentCardComponent } from './appointment-card/appointment-card.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     ScheduleComponent,
     ArticlesandpostsListComponent,
     CustomerDetailsComponent,
+    AppointmentComponent,
+    AppointmentCardComponent,
   ],
   imports: [
     CommonModule,

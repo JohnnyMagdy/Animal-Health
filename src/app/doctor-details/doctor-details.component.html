@@ -4,7 +4,7 @@
 <div class="container" *ngIf="!loading">
     <div class="header">
         {{doctor.userName}}'s profile details
-        <button (click)="deleteDoctor()" class="btn btn-danger btn-float-right" >Delete</button>
+        <button (click)="deleteDoctor()" class="btn btn-danger btn-float-right">Delete</button>
     </div>
 
     <div class="text-center" *ngIf="deleteSuccess">
@@ -13,23 +13,14 @@
     </div>
 
     <div *ngIf="!deleteSuccess" class="body">
-        <div class="upper-body flex-it">
-            <span class="flex-col">
+        <div class="flex-it">
+            <div class="flex-it flex-col full-field-width">
                 <label for="specialization"> Specialization: </label>
                 <input class="field" type="text" readonly disabled value="{{doctor.specialization}}">
 
                 <label for="email"> Email: </label>
                 <input class="field" type="text" readonly disabled value="{{doctor.email}}">
-            </span>
 
-            <span class="float-right">
-                <label for="slotDuration"> Doctor Appointments: </label>
-                <!-- <textarea class="full-height field" type="text" readonly disabled value="{{doctor.biography}}"> </textarea> -->
-            </span>
-        </div>
-
-        <div class="middle-body flex-it">
-            <span class="flex-col">
                 <label for="mobileNumber"> Mobile number: </label>
                 <input class="field" type="text" readonly disabled value="{{doctor.phoneNumber}}">
 
@@ -38,38 +29,21 @@
 
                 <label for="gender"> Gender: </label>
                 <input class="field" type="text" readonly disabled value="{{doctor.gender}}">
-            </span>
+            </div>
 
-            <span class="float-right">
+            <div class="flex-it flex-col full-field-width">
                 <label for="biography"> Biography: </label>
                 <textarea class="full-height field" type="text" readonly disabled value="{{doctor.bio}}"> </textarea>
-            </span>
+            </div>
         </div>
 
-        <div class="footer-body">
+        <div class="margin-top">
+            <app-appointment [upcomingAppointments]="doctor.upcomingAppointments" [previousAppointments]="doctor.previousAppointments"></app-appointment>
+        </div>
+
+        <div class="margin-top">
             <label for="schedule"> Doctor Schedule: </label>
             <app-schedule></app-schedule>
         </div>
     </div>
 </div>
-
-<!-- <span class="Name-Section">{{people.name}}</span> <br>
-
-<span class="Title-Section">{{people.birth_year}}</span> <br>
-<span class="Email-Section">{{people.eye_color}}</span> <br>
-<span class="MobileNumber-Section">{{people.gender}}</span> <br>
-<span class="Gender-Section">{{people.hair_color}}</span> <br>
-<span class="Fees-Section">{{people.height}}</span> <br>
-
-<span class="Biography-Section">{{people.mass}}</span> <br>
-<span class="SlotDuration-Section">{{people.skin_color}}</span> <br>
-
-<span class="Doc-Appointment-Section">{{people.homeworld}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.films}}</span> <br>
-
-<span class="Doc-Schedule-Section">{{people.species}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.starships}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.vehicles}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.url}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.created}}</span> <br>
-<span class="Doc-Schedule-Section">{{people.edited}}</span> <br> -->

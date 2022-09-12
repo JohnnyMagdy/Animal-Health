@@ -1,4 +1,5 @@
 <div class="container">
-    <button (click)="getPreviousAppointments()"> Previous appointments </button>
-    <button (click)="getUpcomingAppointments()" > Upcoming appointments </button>
+    <div class="margin-top">
+        <app-appointment [upcomingAppointments]="upcomingAppointments" [previousAppointments]="previousAppointments"></app-appointment>
+    </div>
 </div>

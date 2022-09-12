@@ -1,0 +1,23 @@
+<div class="container" *ngIf="upcoming">
+    <div class="card" *ngFor="let appointment of upcomingAppointments">
+        <span> ID: <span class="blue"> {{appointment.appointmentId}} </span> </span>
+        <span> Customer Name: <span class="blue"> {{appointment.customerName}} </span> </span>
+        <span> Canceled?: <span class="blue"> {{appointment.isCancelled}} </span> </span>
+        <span> Doctor Name: <span class="blue"> {{appointment.doctorName}} </span> </span>
+        <span> Start Time: <span class="blue"> {{appointment.startTime}} </span> </span>
+        <span> End Time: <span class="blue"> {{appointment.endTime}} </span> </span>
+        <span> Price: <span class="blue"> {{appointment.price}} </span> EGP </span>
+    </div>
+</div>
+
+<div class="container" *ngIf="!upcoming">
+    <div class="card" *ngFor="let appointment of previousAppointments">
+        <span> ID: <span class="red"> {{appointment.appointmentId}} </span> </span>
+        <span> Customer Name: <span class="red"> {{appointment.customerName}} </span> </span>
+        <span> Canceled?: <span class="red"> {{appointment.isCancelled}} </span> </span>
+        <span> Doctor Name: <span class="red"> {{appointment.doctorName}} </span> </span>
+        <span> Start Time: <span class="red"> {{appointment.startTime}} </span> </span>
+        <span> End Time: <span class="red"> {{appointment.endTime}} </span> </span>
+        <span> Price: <span class="red"> {{appointment.price}} </span> EGP </span>
+    </div>
+</div>

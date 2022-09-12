@@ -5,6 +5,7 @@ import { IDoctor, IDoctorResult } from '../models/Doctor';
 import { IDoctorDetails } from '../models/DoctorDetails';
 import { ISchedule } from '../models/Schedule';
 import { ISlot } from '../models/Slot';
+import { IAppointment } from '../models/Appointment';
 
 @Injectable({
   providedIn: 'root'
@@ -44,11 +45,15 @@ export class DoctorService {
     return this.http.get<ISchedule[]>(this.baseUrl+`DisplayDoctorSchedule?Id=${id}`);
   }
 
-  public getDoctorSlots(id:string):Observable<ISlot[]>{
-    return this.http.get<ISlot[]>(this.baseUrl+``)
-  }
-
   public deleteDoctor(id:string){
     return this.http.post(this.baseUrl+`DeleteDoctor?Id=${id}`,'');
+  }
+
+  public getDoctorPreviousAppointments(id:string):Observable<IAppointment[]>{
+    return this.http.get<IAppointment[]>(this.baseUrl+`DisplayDoctorPreviousAppointments?Id=${id}`);
+  }
+
+  public getDoctorUpcomingAppointments(id:string):Observable<IAppointment[]>{
+    return this.http.get<IAppointment[]>(this.baseUrl+`DisplayDoctorUpcomingAppointments?Id=${id}`);
   }
 }

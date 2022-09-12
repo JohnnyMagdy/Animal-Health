@@ -5,7 +5,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { IArticle } from '../models/Article';
 import { ICustomer } from '../models/Customer';
 import { IDoctor } from '../models/Doctor';
+import { IPost } from '../models/Post';
 import { ITeleconsultation } from '../models/Teleconsultaion';
+import { CustomerService } from '../services/customer.service';
 import { DoctorService } from '../services/doctor.service';
 
 @Component({
@@ -21,6 +23,7 @@ export class DataTableComponent implements AfterViewInit {
   @Input() doctorsData: IDoctor[] = [];
   @Input() customersData: ICustomer[] = [];
   @Input() articlesData: IArticle[] = [];
+  @Input() postsData: IPost[] = [];
   @Input() teleconsultationsData: ITeleconsultation[] = [];
 
   @Input() currentPage: number = 0;
@@ -29,12 +32,13 @@ export class DataTableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private doctorService: DoctorService, private cdf: ChangeDetectorRef) { }
+  constructor(private doctorService: DoctorService, private customerService: CustomerService, private cdf: ChangeDetectorRef) { }
 
   doctorDataSource = new MatTableDataSource(this.doctorsData);
   customerDataSource = new MatTableDataSource(this.customersData);
   teleconsultationDataSource = new MatTableDataSource(this.teleconsultationsData);
   articleDataSource = new MatTableDataSource(this.articlesData);
+  postDataSource = new MatTableDataSource(this.postsData);
 
   ngAfterViewInit() {
 
@@ -57,6 +61,11 @@ export class DataTableComponent implements AfterViewInit {
       this.articleDataSource = new MatTableDataSource(this.articlesData);
       this.articleDataSource.sort = this.sort;
     }
+
+    if (this.postsData.length !== 0) {
+      this.postDataSource = new MatTableDataSource(this.postsData);
+      this.postDataSource.sort = this.sort;
+    }
   }
 
   clicked(id: string): void {
@@ -73,6 +82,10 @@ export class DataTableComponent implements AfterViewInit {
 
   setDoctorId(id: string) {
     this.doctorService.setDoctorId(id);
+  }
+
+  setCustomerId(id: string) {
+    this.customerService.setCustomerId(id);
   }
 
   setCustomers(customers: ICustomer[]) {
@@ -99,12 +112,20 @@ export class DataTableComponent implements AfterViewInit {
     this.teleconsultationDataSource.sort = this.sort;
   }
 
-  setArticles(articles: IArticle[]){
+  setArticles(articles: IArticle[]) {
     this.articlesData = articles;
 
     this.articleDataSource = new MatTableDataSource(this.articlesData);
 
     this.articleDataSource.sort = this.sort;
+  }
+
+  setPosts(posts: IPost[]) {
+    this.postsData = posts;
+
+    this.postDataSource = new MatTableDataSource(this.postsData);
+
+    this.postDataSource.sort = this.sort;
   }
 
 }

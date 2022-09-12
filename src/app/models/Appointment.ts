@@ -1,7 +1,9 @@
-export interface IAppointment{
-    petOwnerName: string,
-    petOwnerImg: string,
-    Appointment: Date
-
-    status:string //Upcoming - Previous - Starting soon (within 2 hours)
+export interface IAppointment {
+    appointmentId: number,
+    customerName: string,
+    isCancelled: boolean,
+    doctorName: string,
+    startTime: Date,
+    endTime: Date,
+    price: number,
 }

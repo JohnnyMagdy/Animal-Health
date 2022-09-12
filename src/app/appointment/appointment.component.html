@@ -1,0 +1,8 @@
+<div class="container">
+    <div class="btn-container">
+        <button id="previous" (click)="PreviewPrevious()" class="btn">Previous Apoointments</button>
+        <button id="upcoming" (click)="PreviewUpcoming()" class="btn btn-active">Upcoming Appointments</button>
+    </div>
+
+    <app-appointment-card [upcoming]="upcoming" [upcomingAppointments]="upcomingAppointments" [previousAppointments]="previousAppointments"></app-appointment-card>
+</div>

@@ -3,6 +3,7 @@ export interface IArticleResult{
     currentPage:number,
     totalPages:number
 }
+
 export interface IArticle {
     name: string,
     date: Date,

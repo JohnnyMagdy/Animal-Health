@@ -16,5 +16,6 @@ export interface IDoctorDetails {
     schedule: ISchedule[],
     slotDuration: number,
     
-    // appointments: IAppointment,
+    previousAppointments: IAppointment[],
+    upcomingAppointments: IAppointment[],
 }
