@@ -12,23 +12,31 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getAllArticles(page:number):Observable<IArticleResult>{
-    return this.http.get<IArticleResult>(this.baseUrl+`DisplayAllArticles?counter=${page}`);
+  getAllArticles(page: number): Observable<IArticleResult> {
+    return this.http.get<IArticleResult>(this.baseUrl + `DisplayAllArticles?counter=${page}`);
   }
 
-  getArticleDetails():Observable<IArticle>{
-    return this.http.get<IArticle>(this.baseUrl+'');
+  getArticleDetails(): Observable<IArticle> {
+    return this.http.get<IArticle>(this.baseUrl + '');
   }
 
-  addArticle(){
-    return this.http.post(this.baseUrl+'',{});
+  addArticle(data: IArticleResult) {
+    return this.http.post(this.baseUrl + 'AddArticle', data);
   }
 
-  editArticle(){
-    return this.http.post(this.baseUrl+'',{});
+  editArticle(data: IArticleResult) {
+    return this.http.post(this.baseUrl + 'EditArticle', data);
   }
 
-  getAllPosts():Observable<IPostResult>{
-    return this.http.get<IPostResult>(this.baseUrl+'DisplayAllPosts');
+  getAllPosts(page: number): Observable<IPostResult> {
+    return this.http.get<IPostResult>(this.baseUrl + `DisplayAllPosts?counter=${page}`);
+  }
+
+  deleteArticle(id: string) {
+    return this.http.post(this.baseUrl + `DeleteArticle?Id=${id}`, {});
+  }
+
+  deletePost(id: string) {
+    return this.http.post(this.baseUrl + `DeletePost?Id=${id}`, {});
   }
 }

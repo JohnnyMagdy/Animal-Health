@@ -3,6 +3,7 @@ import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { IArticle } from '../models/Article';
 import { ICustomer } from '../models/Customer';
 import { IDoctor } from '../models/Doctor';
+import { IPost } from '../models/Post';
 import { ITeleconsultation } from '../models/Teleconsultaion';
 import { ArticleService } from '../services/article.service';
 import { CustomerService } from '../services/customer.service';
@@ -28,6 +29,7 @@ export class PaginatorComponent implements OnInit {
   @Output() doctors = new EventEmitter<IDoctor[]>();
   @Output() teleconsultaions = new EventEmitter<ITeleconsultation[]>();
   @Output() articles = new EventEmitter<IArticle[]>();
+  @Output() posts = new EventEmitter<IPost[]>();
 
   constructor(private customerService: CustomerService, private doctorService: DoctorService, private teleconsultationService: TeleconsultaionService, private articleService: ArticleService) {
   }
@@ -63,6 +65,12 @@ export class PaginatorComponent implements OnInit {
       if (this.component == 'tele') {
         this.getPreviousOrNextTeleconsultation();
       }
+      if (this.component == 'article') {
+        this.getPreviousOrNextArticle();
+      }
+      if (this.component == 'post') {
+        this.getPreviousOrNextpost();
+      }
     }
   }
   getNext() {
@@ -76,6 +84,12 @@ export class PaginatorComponent implements OnInit {
       }
       if (this.component == 'tele') {
         this.getPreviousOrNextTeleconsultation();
+      }
+      if (this.component == 'article') {
+        this.getPreviousOrNextArticle();
+      }
+      if (this.component == 'post') {
+        this.getPreviousOrNextpost();
       }
     }
   }
@@ -108,6 +122,14 @@ export class PaginatorComponent implements OnInit {
     this.articleService.getAllArticles(this.currentPage).subscribe({
       next: (data) => {
         this.articles.emit(data.content);
+      }
+    });
+  }
+
+  getPreviousOrNextpost() {
+    this.articleService.getAllPosts(this.currentPage).subscribe({
+      next: (data) => {
+        this.posts.emit(data.content);
       }
     });
   }

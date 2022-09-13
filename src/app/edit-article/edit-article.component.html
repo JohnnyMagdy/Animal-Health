@@ -1,0 +1,123 @@
+<div class="container">
+    <h3 class="title"> Edit/New Article </h3>
+
+    <div class="navigation">
+        <a href="#"> Admin </a> <span> &#xbb; </span> <a routerLink="edit-article"> Edit/New Article </a>
+    </div>
+
+    <hr>
+
+    <div class="content">
+        <div *ngIf="success" class="success"> Article Added Successfully </div>
+
+        <form [formGroup]="articleForm" class="flex-it flex-col" (ngSubmit)="onSubmit()">
+
+            <table>
+                <tr>
+                    <td>
+                        <label for="Title">Title:</label>
+                    </td>
+                    <td>
+                        <input class="input input-width" formControlName="Title" type="text" placeholder="Name" />
+                    </td>
+                    <td>
+                        <label for="Tags">Tags:</label>
+                    </td>
+                    <td>
+                        <input class="input input-width" formControlName="Tags" type="text" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <span
+                            *ngIf=" articleForm.controls['Title'].hasError('required') && articleForm.controls['Title'].touched"
+                            class="error"> Title is required. </span>
+                    </td>
+                    <td></td>
+                    <td>
+                        <span
+                            *ngIf=" articleForm.controls['Tags'].hasError('required') && articleForm.controls['Tags'].touched"
+                            class="error">Tags is required</span>
+                    </td>
+                </tr>
+            </table>
+
+            <table>
+                <td>
+                    <table class="full-width">
+                        <tr>
+                            <td> <label for="body">Body:</label> </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea class="body" formControlName="Body" placeholder="body"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="error"
+                                    *ngIf=" articleForm.controls['Body'].hasError('required') && articleForm.controls['Body'].touched ">
+                                    Body is required </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+
+                <td>
+                    <div class="flex-it flex-col">
+                        <label class="full-width" for="Created on">Created on:</label>
+                        <input formControlName="Createdon" class="input" type="text" placeholder="Created on" />
+                        <span
+                            *ngIf="articleForm.controls['Createdon'].hasError('required') && articleForm.controls['Createdon'].touched"
+                            class="error"> Created on is required</span>
+
+                        <label for="CreatedBy">Created By:</label>
+                        <input formControlName="CreatedBy" class="input" type="text" placeholder="CreatedBy" />
+                        <span
+                            *ngIf="articleForm.controls['CreatedBy'].hasError('required') && articleForm.controls['CreatedBy'].touched"
+                            class="error"> Created By is required</span>
+
+                        <label for="LastModifiedBy">Last Modified By:</label>
+                        <input formControlName="LastModifiedBy" class="input" type="text"
+                            placeholder="LastModifiedBy" />
+                        <span
+                            *ngIf="articleForm.controls['LastModifiedBy'].hasError('required') &&articleForm.controls['LastModifiedBy'].touched"
+                            class="error">Last Modified By is required</span>
+
+                        <label for="LastModifiedOn">Last Modified On:</label>
+                        <input formControlName="LastModifiedOn" class="input" type="text"
+                            placeholder="LastModifiedOn" />
+                        <span
+                            *ngIf="articleForm.controls['LastModifiedOn'].hasError('required') &&articleForm.controls['LastModifiedOn'].touched"
+                            class="error">LastModified On is required</span>
+                    </div>
+                </td>
+            </table>
+
+            <label for="References">References:</label>
+            <input formControlName="Reference" class="input" type="text" placeholder="References" />
+            <span
+                *ngIf="articleForm.controls['Reference'].hasError('required') && articleForm.controls['Reference'].touched"
+                class="error">Reference is required</span>
+
+            <label for="Related-Articles">Related-Articles:</label>
+            <input formControlName="RelatedArticle" class="input" type="text" placeholder="Related-Articles" />
+            <span
+                *ngIf="articleForm.controls['RelatedArticle'].hasError('required') &&articleForm.controls['RelatedArticle'].touched"
+                class="error">Related-Article is required</span>
+
+            <div class="btn-container">
+                <button [disabled]="articleForm.status == 'INVALID' ? true : false" 
+                [ngClass]="articleForm.status == 'INVALID' ? 'btn-inactive' : 'btn'"
+                type="submit">
+                    Add Article
+                </button>
+                <button class="btn" type="reset">
+                    Clear Fields
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

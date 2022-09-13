@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgxRerenderModule } from 'ngx-rerender';
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,13 @@ import { ArticlesandpostsListComponent } from './articlesandposts-list/articlesa
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentCardComponent } from './appointment-card/appointment-card.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { LoginComponent } from './login/login.component';
+
+
+import { AuthTokenInterceptor } from './auth-token.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -45,6 +53,9 @@ import { AppointmentCardComponent } from './appointment-card/appointment-card.co
     CustomerDetailsComponent,
     AppointmentComponent,
     AppointmentCardComponent,
+    EditArticleComponent,
+    EditPostComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -61,9 +72,16 @@ import { AppointmentCardComponent } from './appointment-card/appointment-card.co
     ReactiveFormsModule,
     HttpClientModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgxRerenderModule,
   ],
   exports: [ScheduleComponent],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

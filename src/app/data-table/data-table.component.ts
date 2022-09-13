@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -28,6 +28,9 @@ export class DataTableComponent implements AfterViewInit {
 
   @Input() currentPage: number = 0;
   @Input() numberOfPages: number = 0;
+
+  @Output() articleDeleteEvent = new EventEmitter<string>();
+  @Output() postDeleteEvent = new EventEmitter<string>();
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -126,6 +129,20 @@ export class DataTableComponent implements AfterViewInit {
     this.postDataSource = new MatTableDataSource(this.postsData);
 
     this.postDataSource.sort = this.sort;
+  }
+
+  deleteArticle(id: string) {
+    if(confirm("Are you sure to delete this article?")){
+      this.articleDeleteEvent.emit(id);
+    }else{
+    }
+  }
+
+  deletePost(id: string) {
+    if(confirm("Are you sure to delete this post?")){
+      this.postDeleteEvent.emit(id);
+    }else{
+    }
   }
 
 }

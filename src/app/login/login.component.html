@@ -1,0 +1,35 @@
+<div class="container">
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <h2>ADMIN PAGE</h2>
+    <h4>Login as a Admin user</h4>
+
+    <input type="email" placeholder="Email" formControlName="Email" />
+    <span *ngIf="
+        loginForm.controls['Email'].hasError('required') &&
+        loginForm.controls['Email'].touched
+      " class="error">Email is required</span>
+
+    <span *ngIf="
+        loginForm.controls['Email'].hasError('email') &&
+        loginForm.controls['Email'].touched
+      " class="error">Invalid Email</span>
+
+
+    <input type="password" placeholder="Password" formControlName="Password" />
+    <span *ngIf="
+        loginForm.controls['Password'].hasError('required') &&
+        loginForm.controls['Password'].touched
+      " class="error">Password is required</span>
+    <span *ngIf="
+        loginForm.controls['Password'].hasError('minlength') &&
+        loginForm.controls['Password'].touched
+      " class="error">
+      Password should be at least 8 characters
+    </span>
+
+    <button [disabled]="loginForm.status == 'INVALID'? true : false" class="btn" type="submit">
+      Login
+    </button>
+  </form>
+</div>

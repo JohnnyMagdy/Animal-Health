@@ -6,7 +6,6 @@ export interface IPostResult{
 
 export interface IPost {
     doctorName: string,
-    editDate: string,
     postId: number,
     publishDate: string,
     isPublished: boolean,

@@ -22,10 +22,13 @@
 
     <div *ngIf="article" class="data-table">
         <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
-            [articlesData]="articles" [columnsToDisplay]="displayCols"> </app-data-table>
+            [articlesData]="articles" [columnsToDisplay]="displayColsArticle" (articleDeleteEvent)="deleteArticle($event)"> </app-data-table>
     </div>
+
     <div *ngIf="!article" class="data-table">
-        <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
-            [postsData]="posts" [columnsToDisplay]="displayCols"> </app-data-table>
+        <div *ngIf="show">
+            <app-data-table *mcRerender="trigger" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
+            [postsData]="posts" [columnsToDisplay]="displayColsPost" (postDeleteEvent)="deletePost($event)"> </app-data-table>
+        </div>
     </div>
 </div>

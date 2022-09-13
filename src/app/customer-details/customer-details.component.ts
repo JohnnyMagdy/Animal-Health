@@ -12,8 +12,6 @@ export class CustomerDetailsComponent implements OnInit {
 
   constructor(private customerService: CustomerService) { }
 
-  id = '0083655c-2bca-43c6-92ee-20ecef1f626d';
-
   upcomingAppointments: IAppointment[] = [];
   previousAppointments: IAppointment[] = [];
 

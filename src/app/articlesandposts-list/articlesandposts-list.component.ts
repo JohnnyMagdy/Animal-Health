@@ -18,9 +18,12 @@ export class ArticlesandpostsListComponent implements OnInit {
   numberOfPages: number = 0;
   article = true;
 
+  public trigger: number = 0;
+
   posts: IPost[] = [];
   articles: IArticle[] = [];
-  displayCols = ['title', 'date', 'status', 'type', 'authorName', 'publishDate', 'lastModifiedBy', 'editDate', 'action'];
+  displayColsArticle = ['title', 'status', 'type', 'authorName', 'publishDate', 'editDate', 'action'];
+  displayColsPost = ['postId', 'doctorName', 'category', 'isPublished', 'publishDate', 'action'];
 
   constructor(private articleService: ArticleService, private cdf: ChangeDetectorRef) { }
 
@@ -36,20 +39,20 @@ export class ArticlesandpostsListComponent implements OnInit {
         this.numberOfPages = data.totalPages;
 
         this.show = true;
+        this.rerender();
       }
     });
   }
 
   getAllPosts() {
-    this.articleService.getAllPosts().subscribe({
+    this.articleService.getAllPosts(1).subscribe({
       next: (data) => {
         this.posts = data.content;
         this.currentPage = data.currentPage;
         this.numberOfPages = data.totalPages;
 
         this.show = true;
-        console.log(data);
-        
+        this.rerender();
       }
     });
   }
@@ -74,4 +77,19 @@ export class ArticlesandpostsListComponent implements OnInit {
     view?.classList.remove('active-btn');
   }
 
+  deleteArticle(id: string) {
+    this.articleService.deleteArticle(id).subscribe({
+      next: data => console.log(data)
+    });
+  }
+  
+  deletePost(id: string) {
+    this.articleService.deletePost(id).subscribe({
+      next: data => console.log(data)
+    });
+  }
+
+  public rerender(): void {
+    this.trigger++;
+  }
 }

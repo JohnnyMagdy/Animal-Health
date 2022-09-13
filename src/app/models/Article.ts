@@ -14,3 +14,15 @@ export interface IArticle {
     lastModifiedBy: string,
     lastModifiedOn: string
 }
+
+export interface IArticleReqest {
+    Name: string,
+    Tags:string,
+    Body:string,
+    Reference:string,
+    RelatedArticle:string,
+    LastModifiedBy:string,
+    CreatedBy:string,
+    Createdon:string,
+    LastModifiedOn:string
+}
