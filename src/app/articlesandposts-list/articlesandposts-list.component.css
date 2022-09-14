@@ -93,3 +93,19 @@
     
     background-color: #e0e0d6;
 }
+
+.btn-add{
+    background-color: #3a9ced;
+    color: white;
+    float: right;
+    
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    padding: 0.7rem 1rem;
+
+    border-radius: 15px;
+}
+
+.test{
+    border: solid 1px black;
+}

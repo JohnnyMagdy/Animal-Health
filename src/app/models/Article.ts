@@ -1,7 +1,7 @@
-export interface IArticleResult{
+export interface IArticleResult {
     content: IArticle[],
-    currentPage:number,
-    totalPages:number
+    currentPage: number,
+    totalPages: number
 }
 
 export interface IArticle {
@@ -15,14 +15,29 @@ export interface IArticle {
     lastModifiedOn: string
 }
 
-export interface IArticleReqest {
-    Name: string,
-    Tags:string,
-    Body:string,
-    Reference:string,
-    RelatedArticle:string,
-    LastModifiedBy:string,
-    CreatedBy:string,
-    Createdon:string,
-    LastModifiedOn:string
+// export interface IArticleReqest {
+//     Title: string,
+//     Tags: string,
+//     Body: string,
+//     Refrences: string,
+//     RelatedArticle: string,
+//     LastModifiedBy: string,
+//     CreatedBy: string,
+//     CreatedOn: string,
+//     LastModifiedOn: string
+// }
+
+export interface IArticleDetails {
+    adminEditedByID: string, // LastModifiedBy
+    authorName: string, // CreatedBy
+    body: string, // Body
+    category: string, // ????
+    editDate: string, // LastModifiedOn
+    heading: string, // Title
+    // image: null // ????
+    isPublished: boolean, // ????
+    publishDate: string, // CreatedOn
+    reference: string, // Refrences
+    // Tags
+    // RelatedArticle
 }

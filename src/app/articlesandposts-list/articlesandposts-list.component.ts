@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { IArticle } from '../models/Article';
 import { IPost } from '../models/Post';
 import { ArticleService } from '../services/article.service';
@@ -10,6 +10,7 @@ import { ArticleService } from '../services/article.service';
   styleUrls: ['./articlesandposts-list.component.css']
 })
 export class ArticlesandpostsListComponent implements OnInit {
+  faPlus = faPlus;
 
   faMagnifyingGlass = faMagnifyingGlass;
   show = false;
@@ -39,6 +40,7 @@ export class ArticlesandpostsListComponent implements OnInit {
         this.numberOfPages = data.totalPages;
 
         this.show = true;
+
         this.rerender();
       }
     });
@@ -79,7 +81,7 @@ export class ArticlesandpostsListComponent implements OnInit {
 
   deleteArticle(id: string) {
     this.articleService.deleteArticle(id).subscribe({
-      next: data => console.log(data)
+      error: ()=>{this.rerender()}
     });
   }
   

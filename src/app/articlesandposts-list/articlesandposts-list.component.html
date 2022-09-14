@@ -13,22 +13,28 @@
         <button (click)="activateView('Post'); getAllPosts();" id="Post" class="btn">Posts</button>
     </div>
 
-    <form class="search-form">
-        <input placeholder="Search" type="text" name="search" id="search">
-        <button class="btn" type="submit">
-            <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-        </button>
-    </form>
+    <div class="">
+        <form class="search-form">
+            <input placeholder="Search" type="text" name="search" id="search">
+            <button class="btn" type="submit">
+                <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+            </button>
+        </form>
+        
+        <button class="btn btn-add" routerLink="/add-article"> <fa-icon style="margin-right: 0.2rem;" [icon]="faPlus"></fa-icon> Add New </button>
+    </div>
 
     <div *ngIf="article" class="data-table">
         <app-data-table *ngIf="show" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
-            [articlesData]="articles" [columnsToDisplay]="displayColsArticle" (articleDeleteEvent)="deleteArticle($event)"> </app-data-table>
+            [articlesData]="articles" [columnsToDisplay]="displayColsArticle"
+            (articleDeleteEvent)="deleteArticle($event)"> </app-data-table>
     </div>
 
     <div *ngIf="!article" class="data-table">
         <div *ngIf="show">
             <app-data-table *mcRerender="trigger" [currentPage]="currentPage" [numberOfPages]="numberOfPages"
-            [postsData]="posts" [columnsToDisplay]="displayColsPost" (postDeleteEvent)="deletePost($event)"> </app-data-table>
+                [postsData]="posts" [columnsToDisplay]="displayColsPost" (postDeleteEvent)="deletePost($event)">
+            </app-data-table>
         </div>
     </div>
 </div>

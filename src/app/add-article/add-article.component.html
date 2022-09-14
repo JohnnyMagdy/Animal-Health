@@ -1,20 +1,24 @@
-<div class="loading-container">
-    <span class="loading" *ngIf="loading">Loading...</span>
-</div>
-<div class="container" *ngIf="!loading">
-    <div *ngIf="success" class="success"> Article Updated Successfully </div>
-    <button (click)="ActivateEditMode()"> Edit </button>
+<div class="container">
+    <h3 class="title"> Edit/New Article </h3>
 
-    <div class="header">
-        <form [formGroup]="articleForm" class="flex-it flex-col" (ngSubmit)="editChanges()">
+    <div class="navigation">
+        <a href="#"> Admin </a> <span> &#xbb; </span> <a routerLink="edit-article"> Edit/New Article </a>
+    </div>
+
+    <hr>
+
+    <div class="content">
+        <div *ngIf="success" class="success"> Article Added Successfully </div>
+
+        <form [formGroup]="articleForm" class="flex-it flex-col" (ngSubmit)="onSubmit()">
 
             <table>
                 <tr>
                     <td>
-                        <label for="Title">Title:</label>
+                        <label for="Heading">Title:</label>
                     </td>
                     <td style="width: 50%;">
-                        <input class="form-input input-width" formControlName="Title" type="text" placeholder="Name" />
+                        <input class="form-input input-width" formControlName="Heading" type="text" placeholder="Name" />
                     </td>
                     <td>
                         <label for="Tags">Tags:</label>
@@ -27,7 +31,7 @@
                     <td></td>
                     <td>
                         <span
-                            *ngIf=" articleForm.controls['Title'].hasError('required') && articleForm.controls['Title'].touched"
+                            *ngIf=" articleForm.controls['Heading'].hasError('required') && articleForm.controls['Heading'].touched"
                             class="error"> Title is required. </span>
                     </td>
                     <td></td>
@@ -110,14 +114,12 @@
                 <button [disabled]="articleForm.status == 'INVALID' ? true : false" 
                 [ngClass]="articleForm.status == 'INVALID' ? 'btn-inactive' : 'btn'"
                 type="submit">
-                    Change Article Data
+                    Add Article
                 </button>
                 <button class="btn" type="reset">
                     Clear Fields
                 </button>
             </div>
         </form>
-
     </div>
-
 </div>

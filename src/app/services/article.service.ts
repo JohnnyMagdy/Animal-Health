@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IArticle, IArticleResult } from '../models/Article';
+import { IArticle, IArticleDetails, IArticleResult } from '../models/Article';
 import { IPostResult } from '../models/Post';
 
 @Injectable({
@@ -16,8 +16,8 @@ export class ArticleService {
     return this.http.get<IArticleResult>(this.baseUrl + `DisplayAllArticles?counter=${page}`);
   }
 
-  getArticleDetails(): Observable<IArticle> {
-    return this.http.get<IArticle>(this.baseUrl + '');
+  getArticleDetails(id:string): Observable<IArticleDetails> {
+    return this.http.get<IArticleDetails>(this.baseUrl + `DisplayArticleDetails?Id=${id}`);
   }
 
   addArticle(data: IArticleResult) {
@@ -33,7 +33,7 @@ export class ArticleService {
   }
 
   deleteArticle(id: string) {
-    return this.http.post(this.baseUrl + `DeleteArticle?Id=${id}`, {});
+    return this.http.post(this.baseUrl + `DeleteArticle?Id=${id}`,{});
   }
 
   deletePost(id: string) {

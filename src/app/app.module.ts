@@ -13,6 +13,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgxRerenderModule } from 'ngx-rerender';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 
 import { AppComponent } from './app.component';
@@ -29,12 +30,12 @@ import { ArticlesandpostsListComponent } from './articlesandposts-list/articlesa
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentCardComponent } from './appointment-card/appointment-card.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
-import { EditPostComponent } from './edit-post/edit-post.component';
 import { LoginComponent } from './login/login.component';
 
 
 import { AuthTokenInterceptor } from './auth-token.interceptor';
+import { AddArticleComponent } from './add-article/add-article.component';
+import { EditArticleComponent } from './edit-article/edit-article.component';
 
 
 @NgModule({
@@ -53,9 +54,9 @@ import { AuthTokenInterceptor } from './auth-token.interceptor';
     CustomerDetailsComponent,
     AppointmentComponent,
     AppointmentCardComponent,
-    EditArticleComponent,
-    EditPostComponent,
     LoginComponent,
+    AddArticleComponent,
+    EditArticleComponent,
   ],
   imports: [
     CommonModule,
@@ -73,6 +74,7 @@ import { AuthTokenInterceptor } from './auth-token.interceptor';
     HttpClientModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
     NgxRerenderModule,
+    AngularEditorModule,
   ],
   exports: [ScheduleComponent],
   providers: [

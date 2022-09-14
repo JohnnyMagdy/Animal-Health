@@ -17,6 +17,7 @@ import { DoctorService } from '../services/doctor.service';
 })
 export class DataTableComponent implements AfterViewInit {
   Details = false;
+  detailId = '';
 
   @Input() columnsToDisplay = ['id'];
 
@@ -77,6 +78,10 @@ export class DataTableComponent implements AfterViewInit {
 
   showDetails() {
     this.Details = true;
+  }
+
+  setId(id:string){
+    this.detailId = id;
   }
 
   hideDetails() {
